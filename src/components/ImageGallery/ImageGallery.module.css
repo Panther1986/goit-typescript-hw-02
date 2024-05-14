@@ -1,0 +1,14 @@
+.listImage {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  background-color: aqua;
+}
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  background-color: aqua;
+}
