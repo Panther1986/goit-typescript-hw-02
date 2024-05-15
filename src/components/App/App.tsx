@@ -82,8 +82,8 @@ const App: FC = () => {
     setPage(page + 1);
   };
 
-  const handleImageClick = (image: Image): void => {
-    setSelectedImage(image);
+  const handleImageClick = (images: Image): void => {
+    setSelectedImage(images);
     setIsModalOpen(true);
   };
 
@@ -98,7 +98,12 @@ const App: FC = () => {
       {loading && <Loader />}
       {error && <ErrorMessage message={error} />}
       {images.length > 0 && (
-        <ImageGallery images={images} onClick={handleImageClick} />
+        <ImageGallery
+          images={images}
+          onClick={handleImageClick}
+          likes={0}
+          create={0}
+        />
       )}
       {hasMoreImages && images.length > 0 && <LoadMoreBtn onClick={loadMore} />}
       {selectedImage && (

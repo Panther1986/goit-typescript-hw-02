@@ -7,8 +7,9 @@ const Loader: FC = () => {
     <div className={css.loaderStyle}>
       <Comment
         color="SlateBlue"
-        loading={true}
-        size={100}
+        visible={true}
+        width={100}
+        height={100}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
