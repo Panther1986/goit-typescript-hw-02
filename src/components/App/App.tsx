@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Audio } from "react-loader-spinner";
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
@@ -23,7 +23,7 @@ const App: FC = () => {
 
   useEffect(() => {
     if (query === "") return;
-    async function fetchArticles() {
+    async function fetchArticles(): Promise<void> {
       try {
         setLoading(true);
         const MY_KEY = "3E1uqS10ft75HtW6n-WWxNngOMkfjOfuZz96c8u9lqU";
@@ -34,15 +34,15 @@ const App: FC = () => {
           page: page,
           per_page: 12,
         };
-        const response = await axios.get(
-          `https://api.unsplash.com/search/photos/`,
-          {
-            params: params,
-            headers: {
-              Authorization: `Client-ID ${MY_KEY}`,
-            },
-          }
-        );
+        const response: AxiosResponse<any> = await axios.get<
+          UnsplashImage,
+          AxiosResponse<any>
+        >(`https://api.unsplash.com/search/photos/`, {
+          params: params,
+          headers: {
+            Authorization: `Client-ID ${MY_KEY}`,
+          },
+        });
         const normalizadeData: Image[] = response.data.results.map(
           ({ alt_description, id, urls, likes, created_at }: any) => ({
             alt: alt_description,
